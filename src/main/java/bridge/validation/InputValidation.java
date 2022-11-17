@@ -4,7 +4,7 @@ import bridge.view.Errors;
 
 public class InputValidation {
 
-    public void validateLength(String input) {
+    public void validateBridgeLength(String input) {
         isLengthDigit(input);
         int convertedInput = convertInput(input);
         isLengthValidRange(convertedInput);
