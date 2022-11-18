@@ -2,7 +2,7 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.view.OutputView;
+import bridge.util.OutputView;
 
 import java.util.List;
 
