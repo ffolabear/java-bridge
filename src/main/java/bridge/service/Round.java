@@ -2,7 +2,7 @@ package bridge.service;
 
 import bridge.util.InputView;
 import bridge.validation.InputValidation;
-import bridge.view.OutputView;
+import bridge.util.OutputView;
 
 import java.util.List;
 
