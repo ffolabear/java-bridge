@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.service.GameAttribute;
+import bridge.util.InputView;
 import bridge.validation.InputValidation;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class BridgeMaker {
         InputValidation validator = new InputValidation();
 
         String length = inputView.readBridgeSize();
-        validator.validateLength(length);
+        validator.validateBridgeLength(length);
         return validator.convertInput(length);
     }
 
