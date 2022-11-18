@@ -37,3 +37,32 @@
      
     
 </details>
+
+
+<br>
+
+- `service` 패키지
+   - `BridgeGame` : 다리건너기 게임을 관리하는 컨트롤러 클래스
+   - `BridgeMaker` : 사용자가 입력한 길이를 가진 다리를 생상하는 클래스
+   - `GameAttribute` : 게임에 관련된 요소들을 상수로 갖는 `enum`
+   - `Round` : 게임내에서 존재하는 각 라운드를 생성하는 클래스 
+
+
+- `util` 패키지
+   - `InputView` : 게임중 사용자의 입력을 받는 클래스
+   - `OutputView` : 게임중 출력을 담당하는 클래스
+
+
+- `validation` 패키지
+   - `InputValidation` : 사용자의 입력값을 검증하는 클래스
+   
+
+- `view` 패키지
+   - `Bridge` : 각 라운드별로 출력되는 다리의 요소들을 상수로 갖는 `enum`
+   - `Errors` : 사용자의 입력값 오류시 발생하는 에러 메세지들을 상수로 갖는 `enum`
+   - `Messages` : 게임 진행중 출력되는 메세지들을 상수로 갖는 `enum`
+
+
+
+
+
