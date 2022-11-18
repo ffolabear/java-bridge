@@ -38,6 +38,9 @@
     
 </details>
 
+<div style="text-align: center;">
+    <img src="./image/Architecture.png" alt="">
+</div>
 
 <br>
 
