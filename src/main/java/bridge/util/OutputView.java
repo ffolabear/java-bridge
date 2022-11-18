@@ -1,5 +1,6 @@
-package bridge.view;
+package bridge.util;
 
+import bridge.view.Bridge;
 import bridge.view.Messages;
 
 import java.util.List;
