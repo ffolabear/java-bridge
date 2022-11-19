@@ -1,5 +1,6 @@
 package bridge.util;
 
+import bridge.service.GameAttribute;
 import bridge.view.Bridge;
 import bridge.view.Messages;
 
@@ -14,14 +15,8 @@ import java.util.List;
  */
 public class OutputView {
 
-
-    StringBuilder upperBridge;
-    StringBuilder lowerBridge;
-    private List<String> userBridge;
-
     public OutputView() {
-        upperBridge = new StringBuilder();
-        lowerBridge = new StringBuilder();
+
     }
 
     /**
@@ -29,62 +24,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> userBridge) {
-        this.userBridge = userBridge;
-        createBridgeMap();
-        System.out.println(upperBridge);
-        System.out.println(lowerBridge);
-    }
-
-    private void createBridgeMap() {
-        addHead();
-        for (String command : userBridge) {
-            setLevel(command).append("O");
-            addBody();
-        }
-        addTail();
-    }
-
-
-    private StringBuilder setLevel(String command) {
-        if (command.equals("U")) {
-            lowerBridge.append(" ");
-            return upperBridge;
-        }
-        upperBridge.append(" ");
-        return lowerBridge;
-    }
-
-    private void addHead() {
-        upperBridge.append(Bridge.HEAD.getPiece());
-        lowerBridge.append(Bridge.HEAD.getPiece());
-    }
-
-    private void addBody() {
-        upperBridge.append(Bridge.BOARD.getPiece());
-        lowerBridge.append(Bridge.BOARD.getPiece());
-    }
-
-    private void addTail() {
-        upperBridge.append(Bridge.TAIL.getPiece());
-        lowerBridge.append(Bridge.TAIL.getPiece());
-    }
-
-    private String setEnd(int space) {
-        if (space == 0) {
-            return Bridge.HEAD.getPiece();
-        }
-        return Bridge.TAIL.getPiece();
-    }
-
-
-
-    private void printUpperMap() {
-
-    }
-
-    private void printLowerMap() {
-
+    public void printMap(List<List<String>> resultBridge) {
+        BridgeFormat bridgeFormat = new BridgeFormat(resultBridge);
+        System.out.println(bridgeFormat.formattedBridge());
     }
 
 
@@ -93,7 +35,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<List<String>> resultBridge) {
+        BridgeFormat bridgeFormat = new BridgeFormat(resultBridge);
+        printSystemMessage(Messages.GAME_RESULT_TITLE);
+        System.out.println(bridgeFormat.formattedBridge());
     }
 
     public void printSystemMessage(Messages messages) {
