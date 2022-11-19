@@ -5,7 +5,10 @@ public enum GameAttribute {
     UP("U"),
     DOWN("D"),
     CROSSABLE("O"),
-    UNCROSSABLE("X");
+    EMPTY(" "),
+    UNCROSSABLE("X"),
+    RETRY("R"),
+    QUIT("Q");
 
     private final String attribute;
 
