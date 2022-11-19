@@ -1,6 +1,6 @@
-package bridge;
+package bridge.service;
 
-import bridge.service.GameAttribute;
+import bridge.BridgeNumberGenerator;
 import bridge.util.InputView;
 import bridge.validation.InputValidation;
 
