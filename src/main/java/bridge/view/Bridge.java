@@ -6,7 +6,8 @@ public enum Bridge {
     FAIL("X"),
     HEAD("[ "),
     BOARD(" | "),
-    TAIL(" ]");
+    TAIL(" ]"),
+    EMPTY(" ");
 
     private final String piece;
 
