@@ -41,7 +41,7 @@ public class InputView {
      * 검증메서드 : isValidReplayCommand
      */
     public String readGameCommand() {
-        outputView.printSystemMessage(Messages.GAME_REPLAY_MESSAGE);
+        outputView.printSystemMessage(Messages.GAME_RETRY_MESSAGE);
         return Console.readLine();
     }
 
