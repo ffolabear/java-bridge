@@ -15,7 +15,7 @@ public enum Errors {
     }
 
     public String getError() {
-        return ERROR_HEAD.getError() + error;
+        return error;
     }
 
 }
