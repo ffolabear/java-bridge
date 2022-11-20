@@ -1,7 +1,5 @@
 package bridge.util;
 
-import bridge.service.GameAttribute;
-import bridge.view.Bridge;
 import bridge.view.Messages;
 
 import java.util.List;
@@ -43,5 +41,13 @@ public class OutputView {
 
     public void printSystemMessage(Messages messages) {
         System.out.println(messages.getMessage());
+    }
+
+    public void printGameResultMessage(Messages messages, String gameResult) {
+        System.out.printf((messages.getMessage()) + "%n", gameResult);
+    }
+
+    public void printGameTrialMessage(Messages messages, int trial) {
+        System.out.printf((messages.getMessage()) + "%n", String.valueOf(trial));
     }
 }
