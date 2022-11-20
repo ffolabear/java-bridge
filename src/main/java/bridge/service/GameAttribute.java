@@ -5,10 +5,11 @@ public enum GameAttribute {
     UP("U"),
     DOWN("D"),
     CROSSABLE("O"),
-    EMPTY(" "),
     UNCROSSABLE("X"),
     RETRY("R"),
-    QUIT("Q");
+    QUIT("Q"),
+    SUCCESS("성공"),
+    FAIL("실패");
 
     private final String attribute;
 
