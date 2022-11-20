@@ -6,8 +6,7 @@ public class InputValidation {
 
     public void validateBridgeLength(String input) {
         isLengthDigit(input);
-        int convertedInput = convertInput(input);
-        isLengthValidRange(convertedInput);
+        isLengthValidRange(Integer.parseInt(input));
     }
 
     public void validateGameCommand(String input) {
@@ -42,7 +41,5 @@ public class InputValidation {
         }
     }
 
-    public int convertInput(String input) {
-        return Integer.parseInt(input);
-    }
+
 }
