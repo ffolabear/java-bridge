@@ -2,12 +2,9 @@ package bridge.view;
 
 public enum Bridge {
 
-    SUCCESS("O"),
-    FAIL("X"),
     HEAD("[ "),
     BOARD(" | "),
-    TAIL(" ]"),
-    EMPTY(" ");
+    TAIL(" ]");
 
     private final String piece;
 
