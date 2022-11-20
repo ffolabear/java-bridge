@@ -1,5 +1,6 @@
 package bridge.util;
 
+import bridge.validation.InputValidation;
 import bridge.view.Messages;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -13,9 +14,30 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     OutputView outputView;
+    InputValidation inputValidation;
+    String bridgeLength;
+    String command;
+    String retry;
 
     public InputView() {
         outputView = new OutputView();
+        inputValidation = new InputValidation();
+    }
+
+    public String getCommand() {
+        return command;
+    }
+
+    public void validateBridgeLength() {
+        inputValidation.validateBridgeLength(bridgeLength);
+    }
+
+    public void validateGameCommand() {
+        inputValidation.validateGameCommand(command);
+    }
+
+    public void validateRetryCommand() {
+        inputValidation.validateRetryCommand(retry);
     }
 
     /**
@@ -24,7 +46,8 @@ public class InputView {
      */
     public String readBridgeSize() {
         outputView.printSystemMessage(Messages.INPUT_BRIDGE_LENGTH_MESSAGE);
-        return Console.readLine();
+        bridgeLength = Console.readLine();
+        return bridgeLength;
     }
 
     /**
@@ -33,7 +56,8 @@ public class InputView {
      */
     public String readMoving() {
         outputView.printSystemMessage(Messages.INPUT_GAME_COMMAND_MESSAGE);
-        return Console.readLine();
+        command = Console.readLine();
+        return command;
     }
 
     /**
@@ -42,13 +66,16 @@ public class InputView {
      */
     public String readGameCommand() {
         outputView.printSystemMessage(Messages.GAME_RETRY_MESSAGE);
-        return Console.readLine();
+        retry = Console.readLine();
+        return retry;
     }
 
 
     /*
         추가 구현 코드
      */
-
+    public int convertInput(String input) {
+        return Integer.parseInt(input);
+    }
 
 }
