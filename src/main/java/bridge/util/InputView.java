@@ -13,19 +13,13 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    OutputView outputView;
     InputValidation inputValidation;
     String bridgeLength;
     String command;
     String retry;
 
     public InputView() {
-        outputView = new OutputView();
         inputValidation = new InputValidation();
-    }
-
-    public String getCommand() {
-        return command;
     }
 
     public void validateBridgeLength() {
@@ -45,7 +39,7 @@ public class InputView {
      * 검증메서드 : isLengthDigit -> convertInput -> isLengthValidRange
      */
     public String readBridgeSize() {
-        outputView.printSystemMessage(Messages.INPUT_BRIDGE_LENGTH_MESSAGE);
+        OutputView.printSystemMessage(Messages.INPUT_BRIDGE_LENGTH_MESSAGE);
         bridgeLength = Console.readLine();
         return bridgeLength;
     }
@@ -55,7 +49,7 @@ public class InputView {
      * 검증메서드 : isValidGameCommand
      */
     public String readMoving() {
-        outputView.printSystemMessage(Messages.INPUT_GAME_COMMAND_MESSAGE);
+        OutputView.printSystemMessage(Messages.INPUT_GAME_COMMAND_MESSAGE);
         command = Console.readLine();
         return command;
     }
@@ -65,7 +59,7 @@ public class InputView {
      * 검증메서드 : isValidReplayCommand
      */
     public String readGameCommand() {
-        outputView.printSystemMessage(Messages.GAME_RETRY_MESSAGE);
+        OutputView.printSystemMessage(Messages.GAME_RETRY_MESSAGE);
         retry = Console.readLine();
         return retry;
     }
