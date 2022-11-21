@@ -9,10 +9,10 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    Validation inputValidation;
     private String bridgeLength;
     private String command;
     private String retry;
+    Validation inputValidation;
 
     public InputView() {
         inputValidation = new Validation();
