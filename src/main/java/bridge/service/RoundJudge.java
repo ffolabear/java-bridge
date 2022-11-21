@@ -6,9 +6,9 @@ import java.util.List;
 
 public class RoundJudge {
 
-    Round round;
     final List<String> answerBridge;
     final List<String> userBridge;
+    Round round;
     InputView inputView;
 
     public RoundJudge(Round round) {
@@ -18,22 +18,19 @@ public class RoundJudge {
         inputView = new InputView();
     }
 
-    public boolean compareBridgeSize() {
-        if (userBridge == null || userBridge.size() < answerBridge.size()) {
-            return true;
-        }
-        return false;
+    public boolean judgeCompareBridgeSize() {
+        return userBridge == null || userBridge.size() < answerBridge.size();
     }
 
-    public boolean continueRound() {
+    public boolean judgeContinueRound() {
         int lastIndex = userBridge.size() - 1;
         return !userBridge.isEmpty() && !userBridge.get(lastIndex).equals(answerBridge.get(lastIndex));
     }
 
-    public boolean retryRound() {
+    public boolean judgeRetryRound() {
         String command = inputView.readGameCommand();
         inputView.validateRetryCommand();
-        return command.equals(GameAttribute.RETRY.getAttribute());
+        return command.equals(GameCommand.RETRY.getCommand());
     }
 
     public boolean isUserBridgeCorrect() {
