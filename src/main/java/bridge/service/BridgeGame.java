@@ -1,14 +1,13 @@
 package bridge.service;
 
-import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.util.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스 -> 컨트롤러
- *
+ * <p>
  * *********** InputView, OutView 사용 금지 ***********
  * 패키지는 변경할 수 있다.
  * 필드(인스턴스 변수)를 추가할 수 있다.
@@ -17,38 +16,59 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    int bridgeLength;
-    int currentPosition;
+    int trial = 1;
+    boolean gameResult;
+    boolean isRoundFinished;
     List<String> bridge;
-
+    List<String> userBridge;
+    Round round;
 
     public BridgeGame() {
         startGame();
     }
 
-    public void startGame(){
-            currentPosition = 0;
-            generateBridge();
+    public void startGame() {
+        generateBridge();
+        startRound();
+        gameResult = false;
     }
 
     public void generateBridge() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-
+        int bridgeLength;
         bridgeLength = bridgeMaker.inputBridgeLength();
         bridge = bridgeMaker.makeBridge(bridgeLength);
-        System.out.println(bridge);
-        OutputView outputView = new OutputView();
-        outputView.printMap(bridge);
+    }
+
+    public void startRound() {
+        gameResult = true;
+        playRound();
+        if (isRoundFinished) {
+            printGameResult();
+        }
+        printGameResult();
+    }
+
+    public void playRound() {
+        userBridge = new ArrayList<>();
+        while (userBridge.size() < bridge.size()) {
+            round = new Round(bridge, userBridge);
+            move();
+            round.start();
+            if (!round.continueRound()) {
+                gameResult = false;
+                retry();
+                break;
+            }
+        }
+        isRoundFinished = true;
+        gameResult = round.isUserBridgeCorrect();
     }
 
 
-    public void playGame() {
-        currentPosition = 0;
-        while (currentPosition < bridgeLength) {
-
-            currentPosition++;
-        }
+    public void printGameResult() {
+        round.printFinalResult(trial, gameResult);
     }
 
     /**
@@ -56,9 +76,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(String command) {
-
-        return null;
+    public void move() {
+        userBridge.add(round.inputCommand());
     }
 
     /**
@@ -66,10 +85,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(String command) {
-        if (command.equals("R")) {
-            return true;
+    public void retry() {
+        gameResult = false;
+        if (round.retryRound()) {
+            trial += 1;
+            playRound();
         }
-        return false;
     }
+
 }
