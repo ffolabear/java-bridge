@@ -1,12 +1,14 @@
 package bridge;
 
 import bridge.service.BridgeGame;
+import bridge.util.OutputView;
+import bridge.view.Messages;
 
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         try {
+            OutputView.printSystemMessage(Messages.GAME_START_MESSAGE);
             BridgeGame bridgeGame = new BridgeGame();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
