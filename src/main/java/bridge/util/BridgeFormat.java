@@ -1,7 +1,7 @@
 package bridge.util;
 
-import bridge.service.GameAttribute;
-import bridge.view.Bridge;
+import bridge.service.GameCommand;
+import bridge.view.BridgePiece;
 
 import java.util.List;
 
@@ -23,21 +23,21 @@ public class BridgeFormat {
     }
 
     private void createBridgeMap() {
-        addPiece(Bridge.HEAD.getPiece());
+        addPiece(BridgePiece.HEAD.getPiece());
         for (int index = 0; index < resultBridge.size(); index++) {
             addPiece(addBody(index));
             List<String> round = resultBridge.get(index);
             setLevel(round).append(round.get(1));
         }
-        addPiece(Bridge.TAIL.getPiece());
+        addPiece(BridgePiece.TAIL.getPiece());
     }
 
     private StringBuilder setLevel(List<String> round) {
-        if (round.get(0).equals(GameAttribute.UP.getAttribute())) {
-            lowerBridge.append(" ");
+        if (round.get(0).equals(GameCommand.UP.getCommand())) {
+            lowerBridge.append(BridgePiece.EMPTY.getPiece());
             return upperBridge;
         }
-        upperBridge.append(" ");
+        upperBridge.append(BridgePiece.EMPTY.getPiece());
         return lowerBridge;
     }
 
@@ -45,7 +45,7 @@ public class BridgeFormat {
         if (index == 0 || resultBridge.size() <= 1) {
             return "";
         }
-        return Bridge.BOARD.getPiece();
+        return BridgePiece.BOARD.getPiece();
     }
 
     private void addPiece(String piece) {
