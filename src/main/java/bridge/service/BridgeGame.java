@@ -16,13 +16,9 @@ import java.util.List;
 public class BridgeGame {
 
     private long trial = 1;
+    private Round round;
     boolean gameResult;
     private List<String> answerBridge;
-    private Round round;
-
-    public BridgeGame() {
-        startGame();
-    }
 
     public void startGame() {
         generateBridge();
@@ -46,7 +42,7 @@ public class BridgeGame {
 
     public void playRound() {
         round = new Round(answerBridge);
-        while (round.userBridge.size() < answerBridge.size()) {
+        while (round.compareBridgeSize()) {
             move();
             if (round.continueRound()) {
                 retry();
@@ -62,7 +58,7 @@ public class BridgeGame {
      */
     public void move() {
         round.userBridge.add(round.inputCommand());
-        round.printRoundResult2();
+        round.printRoundResult();
     }
 
     /**
