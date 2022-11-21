@@ -2,7 +2,6 @@ package bridge.service;
 
 import bridge.BridgeRandomNumberGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +18,6 @@ public class BridgeGame {
     private long trial = 1;
     boolean gameResult;
     private List<String> answerBridge;
-    private List<String> userBridge;
     private Round round;
 
     public BridgeGame() {
@@ -43,27 +41,18 @@ public class BridgeGame {
     public void startRound() {
         gameResult = true;
         playRound();
-        printGameResult();
+        round.printFinalResult(trial);
     }
 
     public void playRound() {
-        userBridge = new ArrayList<>();
-        while (userBridge.size() < answerBridge.size()) {
-            round = new Round(answerBridge, userBridge);
+        round = new Round(answerBridge);
+        while (round.userBridge.size() < answerBridge.size()) {
             move();
-            round.start();
-            if (!round.continueRound()) {
-                gameResult = false;
+            if (round.continueRound()) {
                 retry();
                 break;
             }
         }
-        gameResult = round.isUserBridgeCorrect();
-    }
-
-
-    public void printGameResult() {
-        round.printFinalResult(trial, gameResult);
     }
 
     /**
@@ -72,7 +61,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        userBridge.add(round.inputCommand());
+        round.userBridge.add(round.inputCommand());
+        round.printRoundResult2();
     }
 
     /**
