@@ -2,17 +2,16 @@ package bridge.view;
 
 public enum Bridge {
 
-    HEAD("[ "),
-    BOARD(" | "),
-    TAIL(" ]");
+    START_OF_RANGE(3),
+    END_OF_RANGE(20);
 
-    private final String piece;
+    private final int range;
 
-    Bridge(String piece) {
-        this.piece = piece;
+    Bridge(int range) {
+        this.range = range;
     }
 
-    public String getPiece() {
-        return piece;
+    public int getRange() {
+        return range;
     }
 }
