@@ -1,9 +1,7 @@
 package bridge.service;
 
 import bridge.util.InputView;
-import bridge.validation.InputValidation;
 import bridge.util.OutputView;
-import bridge.view.Messages;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,15 +12,11 @@ public class Round {
     final List<String> userBridge;
     List<List<String>> resultBridge;
     InputView inputView;
-    OutputView outputView;
-    InputValidation validator;
 
     public Round(List<String> answerBridge, List<String> userBridge) {
         this.answerBridge = answerBridge;
         this.userBridge = userBridge;
         inputView = new InputView();
-        outputView = new OutputView();
-        validator = new InputValidation();
         resultBridge = new ArrayList<>();
     }
 
@@ -33,7 +27,7 @@ public class Round {
 
     public String inputCommand() {
         String command = inputView.readMoving();
-        validator.validateGameCommand(command);
+        inputView.validateGameCommand();
         return command;
     }
 
@@ -63,27 +57,31 @@ public class Round {
 
     public boolean continueRound() {
         int lastIndex = userBridge.size() - 1;
-        if (!userBridge.isEmpty() && !userBridge.get(lastIndex).equals(answerBridge.get(lastIndex))) {
-            return false;
-        }
-        return true;
+        return userBridge.isEmpty() || userBridge.get(lastIndex).equals(answerBridge.get(lastIndex));
     }
 
     public void printRoundResult() {
-        outputView.printMap(resultBridge);
+        OutputView.printMap(resultBridge);
     }
 
-    public void printFinalResult() {
-        outputView.printResult(resultBridge);
+    public void printFinalResult(int trial, boolean gameResult) {
+        OutputView.printResult(resultBridge, gameResult(gameResult), trial);
     }
 
-    public String retryRound() {
-        outputView.printSystemMessage(Messages.GAME_RETRY_MESSAGE);
+    public boolean retryRound() {
         String command = inputView.readGameCommand();
-        if (command.equals(GameAttribute.QUIT.getAttribute())) {
-
-        }
-        return inputView.readGameCommand();
+        inputView.validateRetryCommand();
+        return command.equals(GameAttribute.RETRY.getAttribute());
     }
 
+    public String gameResult(boolean gameResult) {
+        if (gameResult) {
+            return GameAttribute.SUCCESS.getAttribute();
+        }
+        return GameAttribute.FAIL.getAttribute();
+    }
+
+    public boolean isUserBridgeCorrect() {
+        return answerBridge.equals(userBridge);
+    }
 }
