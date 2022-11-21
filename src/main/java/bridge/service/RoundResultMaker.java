@@ -21,7 +21,7 @@ public class RoundResultMaker {
         for (int index = 0; index < userBridge.size(); index++) {
             List<String> moveResult = makeMoveResult(index);
             resultBridge.add(moveResult);
-            if (moveResult.get(1).equals(GameAttribute.UNCROSSABLE.getAttribute())) {
+            if (moveResult.get(1).equals(GameResult.UNCROSSABLE.getAttribute())) {
                 break;
             }
         }
@@ -36,11 +36,9 @@ public class RoundResultMaker {
 
     public String validateMove(int index) {
         if (userBridge.get(index).equals(answerBridge.get(index))) {
-            return GameAttribute.CROSSABLE.getAttribute();
+            return GameResult.CROSSABLE.getAttribute();
         }
-        return GameAttribute.UNCROSSABLE.getAttribute();
+        return GameResult.UNCROSSABLE.getAttribute();
     }
-
-
 
 }
