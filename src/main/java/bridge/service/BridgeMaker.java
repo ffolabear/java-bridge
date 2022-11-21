@@ -2,7 +2,6 @@ package bridge.service;
 
 import bridge.BridgeNumberGenerator;
 import bridge.util.InputView;
-import bridge.validation.InputValidation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,6 @@ public class BridgeMaker {
         InputView inputView = new InputView();
         String length = inputView.readBridgeSize();
         inputView.validateBridgeLength();
-
         return inputView.convertInput(length);
     }
 
@@ -33,9 +31,6 @@ public class BridgeMaker {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      * <p>
-     * public List<String> makeBridge(int size) {
-     * return null;
-     * }
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
