@@ -10,19 +10,15 @@ public class Round {
 
     final List<String> answerBridge;
     final List<String> userBridge;
-    private final List<List<String>> resultBridge;
+    private List<List<String>> roundResult;
+    RoundJudge roundJudge;
     InputView inputView;
 
-    public Round(List<String> answerBridge, List<String> userBridge) {
+    public Round(List<String> answerBridge) {
         this.answerBridge = answerBridge;
-        this.userBridge = userBridge;
+        userBridge = new ArrayList<>();
         inputView = new InputView();
-        resultBridge = new ArrayList<>();
-    }
-
-    public void start() {
-        makeRoundResult();
-        printRoundResult();
+        roundJudge = new RoundJudge(Round.this);
     }
 
     public String inputCommand() {
@@ -31,65 +27,24 @@ public class Round {
         return command;
     }
 
-    /**
-     * 라운드 결과 관련
-     */
-    public void makeRoundResult() {
-        for (int index = 0; index < userBridge.size(); index++) {
-            List<String> moveResult = makeMoveResult(index);
-            resultBridge.add(moveResult);
-            if (moveResult.get(1).equals(GameAttribute.UNCROSSABLE.getAttribute())) {
-                break;
-            }
-        }
-    }
-
-    /**
-     * 라운드 결과 관련
-     */
-    private List<String> makeMoveResult(int index) {
-        List<String> moveResult = new ArrayList<>();
-        moveResult.add(userBridge.get(index));
-        moveResult.add(judge(index));
-        return moveResult;
-    }
-
-    /**
-     * 라운드 결과 관련
-     */
-    public String judge(int index) {
-        if (userBridge.get(index).equals(answerBridge.get(index))) {
-            return GameAttribute.CROSSABLE.getAttribute();
-        }
-        return GameAttribute.UNCROSSABLE.getAttribute();
-    }
-
-
-    /**
-     * ############
-     * 라운드 판정 관련
-     */
     public boolean continueRound() {
-        int lastIndex = userBridge.size() - 1;
-        return userBridge.isEmpty() || userBridge.get(lastIndex).equals(answerBridge.get(lastIndex));
+        return roundJudge.continueRound();
     }
 
-    public void printRoundResult() {
-        OutputView.printMap(resultBridge);
+    public void makeRoundResult2() {
+        RoundResultMaker roundResultMaker = new RoundResultMaker(Round.this);
+        roundResultMaker.makeRoundResult();
+        roundResult = roundResultMaker.resultBridge;
     }
 
-    public void printFinalResult(long trial, boolean gameResult) {
-        OutputView.printResult(resultBridge, gameResult(gameResult), trial);
+    public void printRoundResult2() {
+        makeRoundResult2();
+        OutputView.printMap(roundResult);
     }
 
-    /**
-     * ############
-     * 라운드 판정 관련
-     */
-    public boolean retryRound() {
-        String command = inputView.readGameCommand();
-        inputView.validateRetryCommand();
-        return command.equals(GameAttribute.RETRY.getAttribute());
+    public void printFinalResult(long trial) {
+        String result = gameResult(roundJudge.isUserBridgeCorrect());
+        OutputView.printResult(roundResult, result, trial);
     }
 
     public String gameResult(boolean gameResult) {
@@ -99,13 +54,7 @@ public class Round {
         return GameAttribute.FAIL.getAttribute();
     }
 
-    /**
-     * ############
-     * 라운드 판정 관련
-     */
-    public boolean isUserBridgeCorrect() {
-        return answerBridge.equals(userBridge);
+    public boolean retryRound() {
+        return roundJudge.retryRound();
     }
-
-
 }
