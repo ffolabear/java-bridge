@@ -42,8 +42,8 @@ public class BridgeMaker {
 
     private String generateSpace(int randomNumber) {
         if (randomNumber == 1) {
-            return GameAttribute.UP.getAttribute();
+            return GameCommand.UP.getCommand();
         }
-        return GameAttribute.DOWN.getAttribute();
+        return GameCommand.DOWN.getCommand();
     }
 }
