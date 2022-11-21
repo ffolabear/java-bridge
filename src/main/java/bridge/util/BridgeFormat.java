@@ -7,8 +7,8 @@ import java.util.List;
 
 public class BridgeFormat {
 
-    StringBuilder upperBridge;
-    StringBuilder lowerBridge;
+    private final StringBuilder upperBridge;
+    private final StringBuilder lowerBridge;
     private final List<List<String>> resultBridge;
 
     public BridgeFormat(List<List<String>> resultBridge) {
@@ -19,18 +19,17 @@ public class BridgeFormat {
     }
 
     public String formattedBridge() {
-        return upperBridge.append("\n").append(lowerBridge).append("\n").toString();
+        return upperBridge.append("\n").append(lowerBridge).toString();
     }
 
     private void createBridgeMap() {
-        addHead();
+        addPiece(Bridge.HEAD.getPiece());
         for (int index = 0; index < resultBridge.size(); index++) {
-            upperBridge.append(addBody(index));
-            lowerBridge.append(addBody(index));
+            addPiece(addBody(index));
             List<String> round = resultBridge.get(index);
             setLevel(round).append(round.get(1));
         }
-        addTail();
+        addPiece(Bridge.TAIL.getPiece());
     }
 
     private StringBuilder setLevel(List<String> round) {
@@ -42,11 +41,6 @@ public class BridgeFormat {
         return lowerBridge;
     }
 
-    private void addHead() {
-        upperBridge.append(Bridge.HEAD.getPiece());
-        lowerBridge.append(Bridge.HEAD.getPiece());
-    }
-
     private String addBody(int index) {
         if (index == 0 || resultBridge.size() <= 1) {
             return "";
@@ -54,10 +48,9 @@ public class BridgeFormat {
         return Bridge.BOARD.getPiece();
     }
 
-    private void addTail() {
-        upperBridge.append(Bridge.TAIL.getPiece());
-        lowerBridge.append(Bridge.TAIL.getPiece());
+    private void addPiece(String piece) {
+        upperBridge.append(piece);
+        lowerBridge.append(piece);
     }
-
 
 }
