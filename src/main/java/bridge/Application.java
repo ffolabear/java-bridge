@@ -10,6 +10,7 @@ public class Application {
         try {
             OutputView.printSystemMessage(Messages.GAME_START_MESSAGE);
             BridgeGame bridgeGame = new BridgeGame();
+            bridgeGame.startGame();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
