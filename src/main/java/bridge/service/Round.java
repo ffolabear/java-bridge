@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.constant.GameResultConstant;
 import bridge.util.InputView;
 import bridge.util.OutputView;
 
@@ -53,9 +54,9 @@ public class Round {
 
     public String gameResult(boolean gameResult) {
         if (gameResult) {
-            return GameResult.SUCCESS.getAttribute();
+            return GameResultConstant.SUCCESS.getAttribute();
         }
-        return GameResult.FAIL.getAttribute();
+        return GameResultConstant.FAIL.getAttribute();
     }
 
     public boolean retryRound() {

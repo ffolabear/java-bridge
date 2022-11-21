@@ -1,6 +1,6 @@
-package bridge.service;
+package bridge.constant;
 
-public enum GameResult {
+public enum GameResultConstant {
 
     CROSSABLE("O"),
     UNCROSSABLE("X"),
@@ -9,7 +9,7 @@ public enum GameResult {
 
     private final String attribute;
 
-    GameResult(String attribute) {
+    GameResultConstant(String attribute) {
         this.attribute = attribute;
     }
 

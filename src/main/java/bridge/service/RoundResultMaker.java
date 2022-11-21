@@ -1,5 +1,7 @@
 package bridge.service;
 
+import bridge.constant.GameResultConstant;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,7 @@ public class RoundResultMaker {
         for (int index = 0; index < userBridge.size(); index++) {
             List<String> moveResult = makeMoveResult(index);
             resultBridge.add(moveResult);
-            if (moveResult.get(1).equals(GameResult.UNCROSSABLE.getAttribute())) {
+            if (moveResult.get(1).equals(GameResultConstant.UNCROSSABLE.getAttribute())) {
                 break;
             }
         }
@@ -36,9 +38,9 @@ public class RoundResultMaker {
 
     public String validateMove(int index) {
         if (userBridge.get(index).equals(answerBridge.get(index))) {
-            return GameResult.CROSSABLE.getAttribute();
+            return GameResultConstant.CROSSABLE.getAttribute();
         }
-        return GameResult.UNCROSSABLE.getAttribute();
+        return GameResultConstant.UNCROSSABLE.getAttribute();
     }
 
 }

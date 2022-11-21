@@ -1,7 +1,7 @@
 package bridge.validation;
 
-import bridge.service.GameCommand;
-import bridge.view.Bridge;
+import bridge.constant.GameCommand;
+import bridge.constant.Bridge;
 import bridge.view.Errors;
 
 public class Validation {

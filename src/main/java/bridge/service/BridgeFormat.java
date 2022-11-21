@@ -1,7 +1,7 @@
-package bridge.util;
+package bridge.service;
 
-import bridge.service.GameCommand;
-import bridge.view.BridgePiece;
+import bridge.constant.GameCommand;
+import bridge.constant.BridgePiece;
 
 import java.util.List;
 
