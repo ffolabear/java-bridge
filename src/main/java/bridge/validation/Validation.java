@@ -1,5 +1,7 @@
 package bridge.validation;
 
+import bridge.service.GameCommand;
+import bridge.view.Bridge;
 import bridge.view.Errors;
 
 public class Validation {
@@ -18,19 +20,21 @@ public class Validation {
     }
 
     private void validateLengthRange(int convertedInput) {
-        if (convertedInput < 3 || 20 < convertedInput) {
+        if (convertedInput < Bridge.START_OF_RANGE.getRange() || Bridge.END_OF_RANGE.getRange() < convertedInput) {
             throw new IllegalArgumentException(errorHead + Errors.ERROR_INVALID_BRIDGE_LENGTH.getError());
         }
     }
 
     public void validateGameCommand(String gameCommandInput) {
-        if (!gameCommandInput.equals("U") && !gameCommandInput.equals("D")) {
+        if (!gameCommandInput.equals(GameCommand.UP.getCommand()) &&
+                !gameCommandInput.equals(GameCommand.DOWN.getCommand())) {
             throw new IllegalArgumentException(errorHead + Errors.ERROR_INVALID_GAME_COMMAND.getError());
         }
     }
 
     public void validateRetryCommand(String gameCommandInput) {
-        if (!gameCommandInput.equals("R") && !gameCommandInput.equals("Q")) {
+        if (!gameCommandInput.equals(GameCommand.RETRY.getCommand()) &&
+                !gameCommandInput.equals(GameCommand.QUIT.getCommand())) {
             throw new IllegalArgumentException(errorHead + Errors.ERROR_INVALID_REPLAY_COMMAND.getError());
         }
     }
