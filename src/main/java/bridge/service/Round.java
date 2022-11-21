@@ -10,7 +10,7 @@ public class Round {
 
     final List<String> answerBridge;
     final List<String> userBridge;
-    List<List<String>> resultBridge;
+    private final List<List<String>> resultBridge;
     InputView inputView;
 
     public Round(List<String> answerBridge, List<String> userBridge) {
@@ -31,6 +31,9 @@ public class Round {
         return command;
     }
 
+    /**
+     * 라운드 결과 관련
+     */
     public void makeRoundResult() {
         for (int index = 0; index < userBridge.size(); index++) {
             List<String> moveResult = makeMoveResult(index);
@@ -41,6 +44,9 @@ public class Round {
         }
     }
 
+    /**
+     * 라운드 결과 관련
+     */
     private List<String> makeMoveResult(int index) {
         List<String> moveResult = new ArrayList<>();
         moveResult.add(userBridge.get(index));
@@ -48,6 +54,9 @@ public class Round {
         return moveResult;
     }
 
+    /**
+     * 라운드 결과 관련
+     */
     public String judge(int index) {
         if (userBridge.get(index).equals(answerBridge.get(index))) {
             return GameAttribute.CROSSABLE.getAttribute();
@@ -55,6 +64,11 @@ public class Round {
         return GameAttribute.UNCROSSABLE.getAttribute();
     }
 
+
+    /**
+     * ############
+     * 라운드 판정 관련
+     */
     public boolean continueRound() {
         int lastIndex = userBridge.size() - 1;
         return userBridge.isEmpty() || userBridge.get(lastIndex).equals(answerBridge.get(lastIndex));
@@ -64,10 +78,14 @@ public class Round {
         OutputView.printMap(resultBridge);
     }
 
-    public void printFinalResult(int trial, boolean gameResult) {
+    public void printFinalResult(long trial, boolean gameResult) {
         OutputView.printResult(resultBridge, gameResult(gameResult), trial);
     }
 
+    /**
+     * ############
+     * 라운드 판정 관련
+     */
     public boolean retryRound() {
         String command = inputView.readGameCommand();
         inputView.validateRetryCommand();
@@ -81,7 +99,13 @@ public class Round {
         return GameAttribute.FAIL.getAttribute();
     }
 
+    /**
+     * ############
+     * 라운드 판정 관련
+     */
     public boolean isUserBridgeCorrect() {
         return answerBridge.equals(userBridge);
     }
+
+
 }
