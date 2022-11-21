@@ -16,12 +16,11 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    int trial = 1;
+    private long trial = 1;
     boolean gameResult;
-    boolean isRoundFinished;
-    List<String> bridge;
-    List<String> userBridge;
-    Round round;
+    private List<String> answerBridge;
+    private List<String> userBridge;
+    private Round round;
 
     public BridgeGame() {
         startGame();
@@ -38,22 +37,19 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         int bridgeLength;
         bridgeLength = bridgeMaker.inputBridgeLength();
-        bridge = bridgeMaker.makeBridge(bridgeLength);
+        answerBridge = bridgeMaker.makeBridge(bridgeLength);
     }
 
     public void startRound() {
         gameResult = true;
         playRound();
-        if (isRoundFinished) {
-            printGameResult();
-        }
         printGameResult();
     }
 
     public void playRound() {
         userBridge = new ArrayList<>();
-        while (userBridge.size() < bridge.size()) {
-            round = new Round(bridge, userBridge);
+        while (userBridge.size() < answerBridge.size()) {
+            round = new Round(answerBridge, userBridge);
             move();
             round.start();
             if (!round.continueRound()) {
@@ -62,7 +58,6 @@ public class BridgeGame {
                 break;
             }
         }
-        isRoundFinished = true;
         gameResult = round.isUserBridgeCorrect();
     }
 
