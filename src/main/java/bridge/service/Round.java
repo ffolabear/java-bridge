@@ -27,18 +27,22 @@ public class Round {
         return command;
     }
 
-    public boolean continueRound() {
-        return roundJudge.continueRound();
+    public boolean compareBridgeSize() {
+        return roundJudge.judgeCompareBridgeSize();
     }
 
-    public void makeRoundResult2() {
+    public boolean continueRound() {
+        return roundJudge.judgeContinueRound();
+    }
+
+    public void makeRoundResult() {
         RoundResultMaker roundResultMaker = new RoundResultMaker(Round.this);
         roundResultMaker.makeRoundResult();
         roundResult = roundResultMaker.resultBridge;
     }
 
-    public void printRoundResult2() {
-        makeRoundResult2();
+    public void printRoundResult() {
+        makeRoundResult();
         OutputView.printMap(roundResult);
     }
 
@@ -49,12 +53,12 @@ public class Round {
 
     public String gameResult(boolean gameResult) {
         if (gameResult) {
-            return GameAttribute.SUCCESS.getAttribute();
+            return GameResult.SUCCESS.getAttribute();
         }
-        return GameAttribute.FAIL.getAttribute();
+        return GameResult.FAIL.getAttribute();
     }
 
     public boolean retryRound() {
-        return roundJudge.retryRound();
+        return roundJudge.judgeRetryRound();
     }
 }
