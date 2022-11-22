@@ -35,9 +35,8 @@ public class BridgeGame {
     public void playRound() {
         round = new Round(answerBridge);
         continueRound = round.compareBridgeSize();
-        while (continueRound) {
+        while (continueRound && !round.isCorrectRound()) {
             move();
-            escapeRound();
         }
     }
 
@@ -55,6 +54,9 @@ public class BridgeGame {
         round.userBridge.add(round.inputCommand());
         if (continueRound) {
             round.printRoundResult();
+        }
+        if (!round.isCorrectRound()) {
+            escapeRound();
         }
     }
 
