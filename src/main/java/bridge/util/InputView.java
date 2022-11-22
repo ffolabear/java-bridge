@@ -15,20 +15,16 @@ public class InputView {
         inputValidation = new Validation();
     }
 
-    public void validateBridgeLength() {
-        inputValidation.validateBridgeLength(bridgeLength);
+    public boolean validateBridgeLength() {
+        return inputValidation.validateBridgeLength(bridgeLength);
     }
 
-    public void validateGameCommand() {
-        inputValidation.validateGameCommand(command);
+    public boolean validateMoveCommand() {
+        return inputValidation.validateMoveCommand(command);
     }
 
-    public void validateRetryCommand() {
-        inputValidation.validateRetryCommand(retry);
-    }
-
-    public void validateEmptyInput(String input) {
-        inputValidation.validateEmptyInput(input);
+    public boolean validateRetryCommand() {
+        return inputValidation.validateRetryCommand(retry);
     }
 
     public String readBridgeSize() {
