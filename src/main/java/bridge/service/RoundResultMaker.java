@@ -20,13 +20,19 @@ public class RoundResultMaker {
     }
 
     public void makeRoundResult() {
-        for (int index = 0; index < userBridge.size(); index++) {
+        int index;
+        for (index = 0; index < userBridge.size(); index++) {
             List<String> moveResult = makeMoveResult(index);
             resultBridge.add(moveResult);
-            if (moveResult.get(1).equals(GameResultConstant.UNCROSSABLE.getAttribute())) {
-                break;
-            }
+            index = isMoveUncrossable(index, moveResult);
         }
+    }
+
+    public int isMoveUncrossable(int index, List<String> moveResult) {
+        if (moveResult.get(1).equals(GameResultConstant.UNCROSSABLE.getAttribute())) {
+            return userBridge.size();
+        }
+        return index;
     }
 
     private List<String> makeMoveResult(int index) {
