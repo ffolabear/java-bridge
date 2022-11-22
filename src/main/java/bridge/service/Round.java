@@ -14,6 +14,7 @@ public class Round {
     private List<List<String>> roundResult;
     RoundJudge roundJudge;
     InputView inputView;
+    boolean quitRound = false;
 
     public Round(List<String> answerBridge) {
         this.answerBridge = answerBridge;
@@ -50,8 +51,11 @@ public class Round {
         OutputView.printMap(roundResult);
     }
 
-    public void printFinalResult(long trial) {
+    public void printFinalResult(long trial, boolean quitRound) {
         String result = gameResult(roundJudge.isUserBridgeCorrect());
+        if (!quitRound) {
+            OutputView.printEmptyLine();
+        }
         OutputView.printResult(roundResult, result, trial);
     }
 
@@ -67,6 +71,10 @@ public class Round {
     }
 
     public boolean retryRound() {
-        return roundJudge.judgeRetryRound();
+        if (roundJudge.judgeRetryRound()) {
+            return true;
+        }
+        quitRound = true;
+        return false;
     }
 }
