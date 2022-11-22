@@ -30,6 +30,10 @@ public class InputView {
         inputValidation.validateRetryCommand(retry);
     }
 
+    public void validateEmptyInput(String input) {
+        inputValidation.validateEmptyInput(input);
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
