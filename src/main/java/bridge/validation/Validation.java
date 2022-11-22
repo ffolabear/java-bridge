@@ -75,11 +75,4 @@ public class Validation {
         return true;
     }
 
-    public boolean isValidTrialNumber(long trial) {
-        if (trial > Integer.MAX_VALUE) {
-            System.out.println(errorHead + ERROR_EXCESS_MAXIMUM_TRIAL.getError());
-            return false;
-        }
-        return true;
-    }
 }
