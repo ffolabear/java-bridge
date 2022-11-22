@@ -23,10 +23,12 @@ public class Round {
     }
 
     public String inputCommand() {
-        String command = inputView.readMoving();
-        inputView.validateEmptyInput(command);
-        inputView.validateGameCommand();
-        return command;
+        String move = inputView.readMoving();
+        while (!inputView.validateMoveCommand()) {
+            move = inputView.readMoving();
+        }
+        inputView.validateMoveCommand();
+        return move;
     }
 
     public boolean compareBridgeSize() {
