@@ -9,53 +9,77 @@ public class Validation {
 
     private final String errorHead = ERROR_HEAD.getError();
 
-    public void validateBridgeLength(String input) {
-        validateLengthDigit(input);
-        validateLengthInteger(input);
-        validateLengthRange(Integer.parseInt(input));
+    public boolean validateBridgeLength(String input) {
+        return validateLengthDigit(input) && isValidLengthType(input)
+                && isValidLengthRange(Integer.parseInt(input)) && isInputEmpty(input);
     }
 
-    private void validateLengthDigit(String input) {
+    public boolean validateMoveCommand(String input) {
+        return isValidMoveCommand(input) && isInputEmpty(input);
+    }
+
+    public boolean validateRetryCommand(String input) {
+        if (isValidRetryCommand(input) && isInputEmpty(input)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validateLengthDigit(String input) {
         if (!input.matches("[0-9]+")) {
-            throw new IllegalArgumentException(errorHead + ERROR_NON_DIGIT.getError());
+            System.out.println(errorHead + ERROR_NON_DIGIT.getError());
+            return false;
         }
+        return true;
     }
 
-    public void validateEmptyInput(String input) {
+    public boolean isInputEmpty(String input) {
         if (input.equals("")) {
-            throw new IllegalArgumentException(errorHead + ERROR_EMPTY_INPUT.getError());
+            System.out.println(errorHead + ERROR_EMPTY_INPUT.getError());
+            return false;
         }
+        return true;
     }
 
-    private void validateLengthRange(int convertedInput) {
+    private boolean isValidLengthRange(int convertedInput) {
         if (convertedInput < Bridge.START_OF_RANGE.getRange() || Bridge.END_OF_RANGE.getRange() < convertedInput) {
-            throw new IllegalArgumentException(errorHead + ERROR_INVALID_BRIDGE_LENGTH.getError());
+            System.out.println(errorHead + ERROR_INVALID_BRIDGE_LENGTH.getError());
+            return false;
         }
+        return true;
     }
 
-    private void validateLengthInteger(String input) {
+    private boolean isValidLengthType(String input) {
         if (Long.parseLong(input) > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException(errorHead + ERROR_EXCESS_INTEGER.getError());
+            System.out.println(errorHead + ERROR_EXCESS_INTEGER.getError());
+            return false;
         }
+        return true;
     }
 
-    public void validateGameCommand(String gameCommandInput) {
+    public boolean isValidMoveCommand(String gameCommandInput) {
         if (!gameCommandInput.equals(GameCommand.UP.getCommand()) &&
                 !gameCommandInput.equals(GameCommand.DOWN.getCommand())) {
-            throw new IllegalArgumentException(errorHead + ERROR_INVALID_GAME_COMMAND.getError());
+            System.out.println(errorHead + ERROR_INVALID_GAME_COMMAND.getError());
+            return false;
         }
+        return true;
     }
 
-    public void validateRetryCommand(String gameCommandInput) {
+    public boolean isValidRetryCommand(String gameCommandInput) {
         if (!gameCommandInput.equals(GameCommand.RETRY.getCommand()) &&
                 !gameCommandInput.equals(GameCommand.QUIT.getCommand())) {
-            throw new IllegalArgumentException(errorHead + ERROR_INVALID_REPLAY_COMMAND.getError());
+            System.out.println(errorHead + ERROR_INVALID_REPLAY_COMMAND.getError());
+            return false;
         }
+        return true;
     }
 
-    public void validateTrialNumber(long trial) {
+    public boolean isValidTrialNumber(long trial) {
         if (trial > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException(errorHead + ERROR_EXCESS_MAXIMUM_TRIAL.getError());
+            System.out.println(errorHead + ERROR_EXCESS_MAXIMUM_TRIAL.getError());
+            return false;
         }
+        return true;
     }
 }
