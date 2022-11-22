@@ -1,4 +1,4 @@
-package bridge;
+package bridge.util;
 
 import bridge.service.BridgeFormat;
 import bridge.validation.Validation;

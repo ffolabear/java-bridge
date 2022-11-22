@@ -1,6 +1,7 @@
-package bridge;
+package bridge.service;
 
-import bridge.service.Round;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package bridge.service;
 
 import bridge.constant.GameResultConstant;
-import bridge.InputView;
-import bridge.OutputView;
+import bridge.util.InputView;
+import bridge.util.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 public class Round {
 
     final List<String> answerBridge;
-    public final List<String> userBridge;
+    final List<String> userBridge;
     private List<List<String>> roundResult;
     RoundJudge roundJudge;
     InputView inputView;

@@ -1,7 +1,7 @@
 package bridge.service;
 
 import bridge.constant.GameCommand;
-import bridge.InputView;
+import bridge.util.InputView;
 
 import java.util.List;
 

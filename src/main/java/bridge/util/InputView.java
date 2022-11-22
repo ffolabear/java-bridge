@@ -1,4 +1,4 @@
-package bridge;
+package bridge.util;
 
 import bridge.validation.Validation;
 import bridge.view.Messages;
