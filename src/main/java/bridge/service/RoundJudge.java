@@ -30,8 +30,9 @@ public class RoundJudge {
 
     public boolean judgeRetryRound() {
         String command = inputView.readGameCommand();
-        inputView.validateEmptyInput(command);
-        inputView.validateRetryCommand();
+        while (!inputView.validateRetryCommand()) {
+            command = inputView.readGameCommand();
+        }
         return command.equals(GameCommand.RETRY.getCommand());
     }
 
