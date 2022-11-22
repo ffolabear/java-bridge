@@ -30,7 +30,7 @@ public class BridgeGame {
     public void startRound() {
         gameResult = true;
         playRound();
-        round.printFinalResult(trial);
+        round.printFinalResult(trial, round.quitRound);
     }
 
     public void playRound() {
