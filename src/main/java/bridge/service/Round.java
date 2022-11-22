@@ -57,6 +57,7 @@ public class Round {
             OutputView.printEmptyLine();
         }
         OutputView.printResult(roundResult, result, trial);
+
     }
 
     public boolean isCorrectRound() {
