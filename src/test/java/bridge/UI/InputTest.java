@@ -60,7 +60,7 @@ public class InputTest extends NsTest {
         @ValueSource(strings = {"1", "QQ", "RR", " "})
         void retryCommandTest(String input) {
             assertRandomNumberInRangeTest(() -> {
-                run("3", "U", "U" ,"U", input);
+                runException("3", "U", "U" ,"U", input);
                 assertThat(output()).contains(Errors.ERROR_INVALID_REPLAY_COMMAND.getError());
             }, 1, 1, 0);
         }
