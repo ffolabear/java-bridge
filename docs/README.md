@@ -45,27 +45,33 @@
 <br>
 
 - `service` 패키지
-   - `BridgeGame` : 다리건너기 게임을 관리하는 컨트롤러 클래스
-   - `BridgeMaker` : 사용자가 입력한 길이를 가진 다리를 생상하는 클래스
-   - `GameAttribute` : 게임에 관련된 요소들을 상수로 갖는 `enum`
-   - `Round` : 게임내에서 존재하는 각 라운드를 생성하는 클래스 
+    - `BridgeGame` : 다리건너기 게임을 관리하는 컨트롤러 클래스
+    - `BridgeMaker` : 사용자가 입력한 길이를 가진 다리를 생상하는 클래스
+    - `GameAttribute` : 게임에 관련된 요소들을 상수로 갖는 `enum`
+    - `Round` : 게임내에서 존재하는 각 라운드를 생성하는 클래스
+    - `RoundJudge` : 각 라운드의 실패와 성공등의 판정을 내리는 클래스
+    - `RoundResultMaker` : 각 라운드마다 출력되는 다리를 만드는 클래스
+    
 
 
 - `util` 패키지
-   - `InputView` : 게임중 사용자의 입력을 받는 클래스
-   - `OutputView` : 게임중 출력을 담당하는 클래스
+    - `InputView` : 게임중 사용자의 입력을 받는 클래스
+    - `OutputView` : 게임중 출력을 담당하는 클래스
 
 
 - `validation` 패키지
-   - `InputValidation` : 사용자의 입력값을 검증하는 클래스
+    - `Validation` : 사용자의 입력값을 검증하는 클래스
    
 
 - `view` 패키지
-   - `Bridge` : 각 라운드별로 출력되는 다리의 요소들을 상수로 갖는 `enum`
-   - `Errors` : 사용자의 입력값 오류시 발생하는 에러 메세지들을 상수로 갖는 `enum`
-   - `Messages` : 게임 진행중 출력되는 메세지들을 상수로 갖는 `enum`
+    - `Errors` : 사용자의 입력값 오류시 발생하는 에러 메세지들을 상수로 갖는 `enum`
+    - `Messages` : 게임 진행중 출력되는 메세지들을 상수로 갖는 `enum`
 
 
-
+- `constant` 패키지
+    - `Bridge` : 다리의 기본 설정 요소들을 상수로 갖는 `enum`  
+    - `BridgPiece` : 다리가 출력될 때 필요한 요소들을 상수로 갖는 `enum`  
+    - `GameCommand` : 게임 실행중 입력되는 명령어들 상수로 갖는 `enum`  
+    - `GameResultConstant` : 게임에 대한 결과를 상수로 갖는 `enum`  
 
 
