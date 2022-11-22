@@ -18,13 +18,12 @@ public class OutputView {
     }
 
     public static void printResult(List<List<String>> resultBridge, String gameResult, long trial) {
-        Validation validation = new Validation();
-        validation.isValidTrialNumber(trial);
         printSystemMessage(Messages.GAME_RESULT_TITLE);
         printMap(resultBridge);
         printGameResultMessage(Messages.GAME_RESULT_MESSAGE, gameResult);
         printGameTrialMessage(Messages.GAME_TRIAL_MESSAGE, trial);
     }
+
 
     public static void printSystemMessage(Messages messages) {
         System.out.println(messages.getMessage());
