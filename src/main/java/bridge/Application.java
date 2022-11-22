@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.service.BridgeGame;
-import bridge.util.OutputView;
 import bridge.view.Messages;
 
 public class Application {

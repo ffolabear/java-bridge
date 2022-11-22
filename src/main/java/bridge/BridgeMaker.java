@@ -1,8 +1,6 @@
-package bridge.service;
+package bridge;
 
-import bridge.BridgeNumberGenerator;
 import bridge.constant.GameCommand;
-import bridge.util.InputView;
 
 import java.util.ArrayList;
 import java.util.List;

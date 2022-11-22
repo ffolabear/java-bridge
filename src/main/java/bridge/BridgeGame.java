@@ -1,6 +1,6 @@
-package bridge.service;
+package bridge;
 
-import bridge.BridgeRandomNumberGenerator;
+import bridge.service.Round;
 
 import java.util.List;
 
@@ -36,6 +36,7 @@ public class BridgeGame {
         round = new Round(answerBridge);
         continueRound = round.compareBridgeSize();
         while (continueRound && !round.isCorrectRound()) {
+            System.out.println(round.isCorrectRound());
             move();
         }
     }
