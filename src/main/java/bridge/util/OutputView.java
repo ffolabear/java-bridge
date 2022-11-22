@@ -15,7 +15,7 @@ public class OutputView {
 
     public static void printResult(List<List<String>> resultBridge, String gameResult, long trial) {
         Validation validation = new Validation();
-        validation.validateTrialNumber(trial);
+        validation.isValidTrialNumber(trial);
         printSystemMessage(Messages.GAME_RESULT_TITLE);
         printMap(resultBridge);
         printGameResultMessage(Messages.GAME_RESULT_MESSAGE, gameResult);
