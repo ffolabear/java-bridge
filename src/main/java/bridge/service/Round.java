@@ -53,6 +53,10 @@ public class Round {
         OutputView.printResult(roundResult, result, trial);
     }
 
+    public boolean isCorrectRound() {
+        return roundJudge.isUserBridgeCorrect();
+    }
+
     public String gameResult(boolean gameResult) {
         if (gameResult) {
             return GameResultConstant.SUCCESS.getAttribute();
