@@ -8,8 +8,8 @@ public class BridgeGame {
 
     private long trial = 1;
     private boolean continueRound = true;
-    private Round round;
     boolean gameResult;
+    private Round round;
     private List<String> answerBridge;
 
     public void startGame() {
