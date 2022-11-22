@@ -21,6 +21,7 @@ public class BridgeMaker {
     public int inputBridgeLength() {
         InputView inputView = new InputView();
         String length = inputView.readBridgeSize();
+        inputView.validateEmptyInput(length);
         inputView.validateBridgeLength();
         return inputView.convertInput(length);
     }
