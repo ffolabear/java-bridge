@@ -13,6 +13,10 @@ public class OutputView {
         System.out.println(bridgeFormat.formattedBridge());
     }
 
+    public static void printEmptyLine() {
+        System.out.println();
+    }
+
     public static void printResult(List<List<String>> resultBridge, String gameResult, long trial) {
         Validation validation = new Validation();
         validation.isValidTrialNumber(trial);
